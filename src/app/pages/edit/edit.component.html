@@ -1,0 +1,57 @@
+<div class="container">
+  <form [formGroup]="editForm">
+    <div class="form">
+      <div class="title">Shopping List</div>
+      <div class="subtitle">Update Shopping List!</div>
+      <div class="input-container ic1">
+        <input
+          id="title"
+          class="input"
+          type="text"
+          formControlName="title"
+          placeholder=" "
+        />
+        <div class="cut"></div>
+        <label for="title" class="placeholder"> Title</label>
+      </div>
+      <div class="input-container ic2">
+        <input
+          id="category"
+          class="input"
+          type="text"
+          formControlName="category"
+          placeholder=" "
+        />
+        <div class="cut"></div>
+        <label for="category" formControlName="category" class="placeholder"
+          >Category</label
+        >
+      </div>
+      <div class="input-container ic2">
+        <textarea
+          id="items"
+          class="input"
+          type="text"
+          formControlName="items"
+          placeholder=" "
+        ></textarea>
+        <div class="cut cut-short"></div>
+        <label for="items" class="placeholder">List Items</label>
+      </div>
+      <div class="input-container ic2">
+        <input
+          id="date"
+          class="input"
+          type="date"
+          formControlName="date"
+          placeholder=" "
+        />
+        <div class="cut"></div>
+        <label for="date" class="placeholder">Date</label>
+      </div>
+      <div class="btn">
+        <button class="btns" (click)="update()">Update 🎈</button>
+      </div>
+    </div>
+  </form>
+</div>

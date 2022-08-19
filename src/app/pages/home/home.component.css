@@ -1,0 +1,169 @@
+.body {
+  margin: 0px;
+  display: grid;
+  align-items: center;
+  justify-items: center;
+  height: 100vh;
+  color: #f4f7f7;
+  background-color: #586875;
+  font: 1rem/1 "Cabin", sans-serif;
+  overflow-x: hidden;
+}
+
+/* hide radio buttons, but still expose them to screen readers */
+input {
+  position: absolute;
+  width: 1px;
+  clip: rect(0 0 0 0);
+  overflow: hidden;
+  white-space: nowrap;
+}
+
+.selector {
+  display: grid;
+  grid-template-areas:
+    "happy shopping"
+    "pick  pick";
+}
+
+label {
+  display: block;
+  cursor: pointer;
+}
+
+.happy-card,
+.shopping-card {
+  position: relative;
+  width: 250px;
+  padding: 20px;
+  color: #586875;
+  background-color: #f4f7f7;
+  box-shadow: 0 10px 20px #0006;
+  animation-duration: 0.5s;
+  animation-timing-function: ease-in-out;
+  animation-fill-mode: forwards;
+}
+
+.happy-card {
+  grid-area: happy;
+  margin-right: -10px;
+  --swing: -25px;
+  --overlap: 25px;
+}
+
+.shopping-card {
+  grid-area: shopping;
+  margin-left: -10px;
+  --swing: 25px;
+  --overlap: -25px;
+}
+
+/* when a radio button is set, swing the corresponding card fowards */
+#happy-radio:checked ~ .selector .happy-card,
+#foods-radio:checked ~ .selector .shopping-card {
+  animation-name: swing-forwards;
+}
+
+@keyframes swing-forwards {
+  0% {
+    z-index: 1;
+    transform: scale(0.9);
+  }
+  50% {
+    transform: translateX(var(--swing));
+  }
+  100% {
+    z-index: 2;
+    transform: translateX(var(--overlap)) scale(1.1);
+  }
+}
+#happy-radio:checked ~ .selector .shopping-card,
+#foods-radio:checked ~ .selector .happy-card {
+  animation-name: swing-backwards;
+}
+
+@keyframes swing-backwards {
+  0% {
+    z-index: 2;
+    transform: translateX(var(--overlap)) scale(1.1);
+  }
+  50% {
+    transform: translateX(var(--swing));
+  }
+  100% {
+    z-index: 1;
+    transform: scale(0.9);
+  }
+}
+
+h1 {
+  margin: 0;
+  padding-bottom: 10px;
+  border-bottom: 1px dashed #bdd6d2;
+  font-size: 1.5rem;
+}
+
+ul {
+  margin: 15px 0;
+  padding-left: 30px;
+  line-height: 1.5rem;
+  list-style-type: square;
+}
+
+p {
+  margin: 0 -20px -20px;
+  padding: 15px;
+  background-color: #bdd6d2;
+  font-weight: bold;
+  text-align: center;
+}
+
+.happy-pick,
+.shop-pick {
+  grid-area: pick;
+  margin: 50px auto 0;
+  padding: 15px;
+  border: 1px solid #f4f7f7;
+  border-radius: 9999px;
+  background-color: #b46d73;
+  font-size: 1.25rem;
+  -webkit-user-select: none;
+  user-select: none;
+}
+
+.happy-pick::before,
+.shop-pick::after {
+  display: inline-block;
+  font-family: "Font Awesome 5 Free";
+  font-weight: bold;
+}
+
+.happy-pick::before {
+  margin-right: 10px;
+  content: "\f0a8"; /* fa-arrow-circle-left */
+}
+
+.shop-pick::after {
+  margin-left: 10px;
+  content: "\f0a9"; /* fa-arrow-circle-right */
+}
+
+#happy-radio:checked ~ .selector .happy-pick {
+  display: none;
+}
+
+#foods-radio:checked ~ .selector .shop-pick {
+  display: none;
+}
+
+@media (max-width: 560px) {
+  .happy-card {
+    margin-right: -85px;
+    --swing: -100px;
+  }
+
+  .shopping-card {
+    margin-left: -85px;
+    --swing: 100px;
+  }
+}

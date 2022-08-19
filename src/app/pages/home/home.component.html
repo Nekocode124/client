@@ -1,0 +1,49 @@
+<!--You can use this code the check if the data is coming from the backend{{ shoppingList | json }}-->
+
+<div class="body">
+  <!-- these radio buttons hold state of which card is in front and which toggle button is visible -->
+  <input type="radio" name="sushi-lunch" id="happy-radio" />
+  <input type="radio" name="sushi-lunch" id="foods-radio" checked />
+
+  <div class="selector">
+    <label for="happy-radio" class="happy-card">
+      <h1>Shopping List</h1>
+      <div *ngFor="let shopping of shoppingList; index as i">
+        <br />
+        <h3>#{{ i + 1 }}</h3>
+        <h5>{{ shopping.title }}</h5>
+
+        <ul>
+          <li>{{ shopping.items }}</li>
+          <li>Sea Salt Edamame</li>
+          <li>Miso Soup</li>
+        </ul>
+        <p><a class="btns" routerLink="/edit/{{ i }}">Edit</a></p>
+        <p><button class="btns" (click)="delete(i)">Delete</button></p>
+      </div>
+    </label>
+    <label for="happy-radio" class="happy-pick">ZOOM IN</label>
+    <label for="foods-radio" class="shop-pick">ZOOM OUT</label>
+  </div>
+</div>
+<!-----
+    <label for="foods-radio" class="shopping-card">
+      <h1>Shopping List 2</h1>
+      <ul>
+        <li>Spicy Tuna Roll</li>
+        <li>Shrimp Tempura Roll</li>
+        <li>4 Pieces Asssorted Nigiri</li>
+        <li>Wonton Soup</li>
+      </ul>
+      <p><button class="btns">Edit</button></p>
+      <p><button class="btns">Delete</button></p>
+    </label>
+
+    <label for="happy-radio" class="happy-pick"
+      >Switch to Happy Sushi Lunch!</label
+    >
+    <label for="foods-radio" class="shop-pick"
+      >Switch to Sushi Lover's Lunch!</label
+    >
+  </div>
+</div>-->
